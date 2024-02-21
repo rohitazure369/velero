@@ -1,0 +1,22 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: azure-velero
+provisioner: kubernetes.io/azure-disk
+parameters:
+  storageaccountname: 
+    valueFrom:
+      secretKeyRef:
+        name: azure-storage-secret-provider
+        key: storageaccountname
+  storageaccountkey: 
+    valueFrom:
+      secretKeyRef:
+        name: azure-storage-secret-provider
+        key: storageaccountkey
+  resourceGroup: 
+    valueFrom:
+      secretKeyRef:
+        name: azure-storage-secret-provider
+        key: resourcegroup
+  kind: BlobStorage
